@@ -2,19 +2,8 @@ name: Build VideoRenderer
 
 on:
   push:
-    paths-ignore:
-      - .github/workflows/main.yml
-      - '**.txt'
-      - '**.md'
-      - '**.cmd'
-      - '**.vcxproj.filters'
   pull_request:
-    paths-ignore:
-      - .github/workflows/main.yml      
-      - '**.txt'
-      - '**.md'
-      - '**.cmd'
-      - '**.vcxproj.filters'
+  workflow_dispatch:   # 允许手动触发
 
 jobs:
   build:
@@ -29,7 +18,7 @@ jobs:
 
       - name: Build VideoRenderer
         run: |
-          .\\build_mpcvr.cmd NoWait
+          .\build_mpcvr.cmd NoWait
         shell: pwsh
 
       - name: Upload build artifacts
@@ -38,4 +27,3 @@ jobs:
           name: "MPC Video Renderer" 
           path: _bin/MpcVideoRenderer*.zip
           compression-level: 0
- 
